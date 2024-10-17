@@ -14,7 +14,7 @@ resource "aws_security_group" "demo-sg" {
   description = "SSH Access"
   
   ingress {
-    description      = "SSH access"
+    description      = "SSH  access"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
