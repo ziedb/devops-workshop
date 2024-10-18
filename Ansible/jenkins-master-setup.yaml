@@ -2,19 +2,25 @@
 - hosts: jenkins-master
   become: true
   tasks:
+
+  - name: Run the equivalent of "apt-get update" as a separate step
+    ansible.builtin.apt:
+      update_cache: yes
+
   - name: add jenkins key
     apt_key:
-      url:  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+      url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
       state: present
 
-  - name: add jenkins repo
+  - name: Add jenkins repo
     apt_repository:
       repo: 'deb https://pkg.jenkins.io/debian-stable binary/'
       state: present
 
+
   - name: install java
     apt:
-      name: openjdk-11-jre
+      name: openjdk-17-jre
       state: present
 
   - name: install jenkins
